@@ -10,6 +10,8 @@ set(KEYSTONE_VERSION_MINOR 9)
 option(KEYSTONE_BUILD_STATIC_RUNTIME "Embed static runtime" ON)
 option(BUILD_LIBS_ONLY "Only build keystone library" 0)
 
+set(CMAKE_BUILD_TYPE "Debug")
+
 if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   message(STATUS "No build type selected, default to Debug")
   set(CMAKE_BUILD_TYPE "Debug")
@@ -63,7 +65,7 @@ if (KEYSTONE_BUILD_STATIC_RUNTIME)
         CMAKE_CXX_FLAGS_RELEASE  CMAKE_CXX_FLAGS_RELWITHDEBINFO
         CMAKE_CXX_FLAGS_DEBUG  CMAKE_CXX_FLAGS_DEBUG_INIT)
         if (MSVC)
-            STRING(REPLACE "/MD"  "/MT" "${flag}" "${${flag}}")
+            STRING(REPLACE "/MT"  "/MD" "${flag}" "${${flag}}")
             SET("${flag}" "${${flag}} /EHsc")
         endif (MSVC)
     ENDFOREACH()
